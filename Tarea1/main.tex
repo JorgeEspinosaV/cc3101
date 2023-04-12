@@ -1,0 +1,59 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%% Define Article %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\documentclass{article}
+
+
+\usepackage{tcolorbox}
+
+\begin{document}
+\begin{center}
+    {\Large\textsc{Tarea 1}}\\
+    {\small\textsc{Pregunta 1: Lógica proposicional}}\\
+    \small{\textsc{Matemáticas Discretas}}
+\end{center}
+
+Integrantes:
+\begin{itemize}
+    \item Franco Cattani
+    \item Nicolás del Valle
+    \item Jorge Espinosa
+\end{itemize}
+
+\begin{enumerate}
+    \item Suponga que le entregan un algoritmo de \textit{caja negra}
+    de resolución SAT, es decir, un dispositivo que toma una fórmula de 
+    lógica proposicional $\phi$ y devuelve si $\phi$ es o no satisfacible.
+    Usted no sabe nada sobre el funcionamiento de este algoritmo. Vamos a 
+    denotar este algoritmo $A$, por lo que $A(\phi)$ es verdadero si $\phi$
+    es satisfacible.
+
+    Esta pregunta plantea qué más se puede hacer con un algoritmo de 
+    resolución SAT.
+    \begin{enumerate}
+        \item Cree un algoritmo que utilice $A$ como subrutina para determinar 
+         si $\phi$ es una tautología. Demuestre que su algoritmo es correcto. 
+         No se limite a enumerar todas las posibles asignaciones y comprobar cada una individualmente.
+
+        Respuesta: \\ 
+            Para este algoritmo utilizaremos el siguiente \textit{lemma}
+
+        \begin{tcolorbox}[title=\textit{Lemma}]
+            La proposición $\phi$ es una tautología si y solo sí $\neg\phi$ es no 
+            satisfacible.
+        \end{tcolorbox}
+         
+        En base a esto el algoritmo se le pasa como parametro $\phi$ para luego utilizar como subrutina 
+        $A$ con el parámetro $\neg\phi$, es decir, $A(\neg\phi)$, si $A(\neg\phi)=F$ entonces $\phi$
+         es tautología, de lo contrario no es tautología.
+
+         \item Suponga que tiene dos fórmulas proposicionales $\phi$ y $\psi$. Te interesa determinar 
+         si $\phi \equiv \psi$, es decir, si $\phi$ y $\psi$ tienen siempre los mismos valores de verdad.
+        Crea un algoritmo que utilice $A$ como subrutina para responder esta pregunta, y demuestra que tu 
+        algoritmo es correcto.
+        
+        Respuesta:
+
+        
+    \end{enumerate}
+\end{enumerate}
+
+\end{document}
