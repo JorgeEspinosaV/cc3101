@@ -1,10 +1,15 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%% Define Article %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \documentclass[10pt]{article}
-
+\usepackage[utf8]{inputenc}
+\usepackage[spanish]{babel}
+\usepackage[dvipsnames,table]{xcolor}
+\usepackage{graphicx}
+\usepackage{float}
 \usepackage[a4paper, total={6in, 8in}]{geometry}
 \usepackage{tcolorbox}
 
 \begin{document}
+
 \begin{center}
     {\Large\textsc{Tarea 1}}\\
     {\small\textsc{Pregunta 1: Lógica proposicional}}\\
@@ -77,9 +82,19 @@ Integrantes:
         Cree un algoritmo que utilice $A$ como subrutina para obtener una asignación satisfactoria para $\phi$ 
         utilizando como máximo $n$  llamadas a $A$. Demuestre que su respuesta es correcta.
 
-        El algoritmo tomará como variables $\phi , n , A$, supongamos que las $n$ variables son 
-        $P:\{P_1,P_2,...,P_n\}$, sabemos que son $2^n$ posibles asignaciones y $n$ llamadas al algoritmo $A$
-        por ende intentar a la fuerza bruta no es factible, por otro lado 
+        El algoritmo tomará como variables $\phi , n , A$, supongamos que las $n$ variables son \newline 
+        $P:\{P_1,P_2,...,P_n\}$, se guardarán todas las $n$ variables de $\phi$, para luego recorrerlas. No se 
+        les asignarán una valuación inicialmente.
+        
+        Se le asignará una valuacion ${0,1}$ a $P_i$ (primer caso $P_0$), con esto quedarán $n-i$ variables sin 
+        valuación, ahora se le pasará $A(\phi ^i)$ el cuál corresponde a $\phi$ con las $i$ asignaciones 
+        ya dadas, si $A(\phi^i)=\texttt{Falso}$ entonces se cambiará el valor dado a $P_i$ y se pasará a $P_{i+1}$.
+        Así hasta llegar a $i=n$ donde se entregarán las asignaciones contenidas en $\phi^n$. 
+
+        Notemos que $\phi$ es satisfacible por ende existe una asignación satisfactoria, si la asignación $P_i$ no 
+        satisface $\phi$ entonces $\neg P_i$ si lo hará, ya que, sabemos que $\phi$ es satisfacible. Así sucesivamente
+        con las $n$ variables. Con esto demostramos que el algoritmo entregará una asignación satisfactoria y además 
+        es fácil notar  tiene $n$ llamadas a $A$ con lo que cumple con lo pedido.
         
 
         
@@ -133,11 +148,26 @@ Integrantes:
     \begin{center}
         $a_i\oplus b_i\oplus c_{i-1}\equiv\neg(\neg\{\neg(\neg a_i\vee b_i)\vee\neg(a_i\vee\neg b_i)\}\vee c_{i-1})\vee\neg(\{\neg(\neg a_i\vee b_i)\vee\neg(a_i\vee\neg b_i)\}\vee\neg c_{i-1})$
     \end{center}
+    Con estas dos podemos definir las fórmulas:
+    \begin{itemize}
+        \item $\phi_0=a_0\oplus b_0 \oplus c_{i_0}$
+        
+        \hspace{0.55cm}$\vdots$
 
+        \item $\phi_i=a_i\oplus b_i \oplus \mathcal{C}(a_{i-1},b_{i-1},c_{i-2})$
+        
+        \hspace{0.55cm}$\vdots$
+
+        \item $\phi_{n-1}=a_{n-1}\oplus b_{n-1}\oplus\mathcal{C}(a_{n-2},b_{n-2},c_{n-3})$
+        \item $\phi_n=\mathcal{C}(a_{n-1},b_{n-1},c_{n-2})$
+    \end{itemize}
+
+    $\mathcal{C}(a_i,b_i,c_{i-1})=c_i$ es el acarreamiento (bit sobrante de la suma de bits de la $i-esima$ posición).
+        
     Con esto podemos sumar números binarios donde tendremos dos fórmulas lógicas las que nos definen la operación suma.
-
+    
     \end{enumerate}
 
-    
+
 
 \end{document}
